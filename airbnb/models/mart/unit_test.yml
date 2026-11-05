@@ -1,9 +1,9 @@
 unit_tests:
   - name: unittest_fullmoon_matcher
-    model: mart_full_moon_review
+    model: mart_fullmoon_reviews
     given:
       - input: ref('fct_reviews')
-        rows:
+        rows: 
           - {review_date: '2025-01-13'}
           - {review_date: '2025-01-14'}
           - {review_date: '2025-01-15'}
@@ -15,19 +15,3 @@ unit_tests:
         - {review_date: '2025-01-13', is_full_moon: "not full moon"}
         - {review_date: '2025-01-14', is_full_moon: "not full moon"}
         - {review_date: '2025-01-15', is_full_moon: "full moon"}
-  - name: unittest_consistent_created_at
-      model: consistent_created_at
-      given:
-        - input: ref('fct_reviews')
-          rows:
-            - {review_date: '2025-01-13'}
-            - {review_date: '2025-01-14'}
-            - {review_date: '2025-01-15'}
-        - input: ref('seed_full_moon_dates')
-          rows:
-            - {full_moon_date: '2025-01-14'}
-      expect:
-        rows:
-          - {review_date: '2025-01-13', is_full_moon: "not full moon"}
-          - {review_date: '2025-01-14', is_full_moon: "not full moon"}
-          - {review_date: '2025-01-15', is_full_moon: "full moon"}

@@ -1,6 +1,8 @@
 {{
 config(
-    materialized='view')
+    materialized='view',
+    event_time='created_at'
+    )
 }}
 
 WITH SRC_LISTING AS (
